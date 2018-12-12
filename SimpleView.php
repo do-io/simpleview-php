@@ -10,6 +10,7 @@
  * @license  MIT ./LICENSE
  * @link     www.odden.io
  */
+namespace SimpleView;
 
 require_once 'SimpleViewFilter';
 
