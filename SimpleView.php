@@ -7,7 +7,7 @@
  * @category    SimpleView_Soap
  * @package     SimpleView
  * @author      Darren Odden <darren@odden.io>
- * @file        simpleView.php
+ * @file        SimpleView.php
  * @copyright   2018 Darren Odden
  * @license     MIT /LICENSE
  * @version     Release: @package_version@
