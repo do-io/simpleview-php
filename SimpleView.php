@@ -1,77 +1,77 @@
 <?php
 /**
- * SimpleView Soap package
+ * SimpleView Service API
  * 
- * PHP Version 7.2
+ * PHP Version 7.1
  * 
- * @category    SimpleView_Soap
- * @package     SimpleView
- * @author      Darren Odden <darren@odden.io>
- * @file        SimpleView.php
- * @copyright   2018 Darren Odden
- * @license     MIT /LICENSE
- * @version     Release: @package_version@
- * @link        http://www.odden.io
- * @description main simpleView soap connector
+ * @category SimpleView
+ * @package  SimpleView
+ * @author   Darren Odden <darren@odden.io>
+ * @license  MIT ./LICENSE
+ * @link     www.odden.io
  */
 
-require_once "SimpleViewFilter";
+require_once 'SimpleViewFilter';
 
 class SimpleView
 {
-
-    private $_userName;
-    private $_password;
-    private $_soapClient;
+    private $userName = '';
+    private $password = '';
+    private $soapClient;
 
     /**
      * __construct
      *
-     * Setup the soap client
-     *
-     * @param [string] $config object to simpleview config object
+     * @param [object] $config configuration object
      */
-    function __construct($config) 
+    function __construct($config)
     {
-        $this->_userName = $config->username;
-        $this->_password = $config->password;
-        $this->_soapClient = new SoapClient($config->soapurl);
+        $this->userName   = $config->username;
+        $this->password   = $config->password;
+        $this->soapClient = new SoapClient($config->soapurl);
     }
 
-    // API Wrappers 
+    // API Wrappers
 
     /**
-     * Get listings from Simpleview
+     * Undocumented function
      *
-     * @param [type] $pageSize         how many items should return
-     * @param [type] $pageNum          what page
-     * @param [type] $filter           how should this be filtered
-     * @param [type] $displayAmenities display the amenities
+     * @param integer $pageSize
+     * @param integer $pageNum
+     * @param object  $filter
+     * @param bool   $displayAmenities
      * 
-     * @return false on fail
+     * @return void
      */
-    public function getListings($pageSize, $pageNum, $filter, $displayAmenities)
+    public function getListings($pageSize = 1, $pageNum = 1, $filter = null, $displayAmenities = null)
     {
         $results;
-        
-        try 
+        $simpleViewFilter = new SimpleViewFilter();
+        if ($filter === null) {
+            $filter = $simpleViewFilter->filterAllListings();
+        }
+
+        if ($displayAmenities === null) {
+            $displayAmenities = false;
+        }
+
+        try
         {
-            $results = $this->_soapClient->getListings(
-                $this->_userName,
-                $this->_password,
-                $pageNum, 
+            $results = $this->soapClient->getListings(
+                $this->userName,
+                $this->password,
+                $pageNum,
                 $pageSize,
                 $filter,
-                $this->convertBoolToInt($displayAmenities)
+                ($displayAmenities === true) ? 1 : 0
             );
         }
         catch (Exception $ex)
         {
             $results = false;
         }
-        
+
         return $results;
     }
-
 
 }
