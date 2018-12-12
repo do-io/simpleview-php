@@ -10,9 +10,6 @@
  * @license  MIT ./LICENSE
  * @link     www.odden.io
  */
-namespace SimpleView;
-
-require_once 'SimpleViewFilter';
 
 /**
  * SimpleView Class that controls the api requests

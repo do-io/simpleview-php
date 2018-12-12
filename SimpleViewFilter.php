@@ -1,21 +1,31 @@
 <?php
 /**
  * Filter for SimpleView
- * 
+ *
+ * PHP Version 7.1
+ *
  * @category    SimpleView_Filter
  * @package     SimpleView
  * @author      Darren Odden <darren@odden.io>
  * @file        SimpleViewFilter.php
  * @copyright   2018 Darren Odden
  * @license     MIT /LICENSE
- * @version     Release: <package_version>
+ * @version     GIT: <git_id>
  * @link        http://www.odden.io
  * @description main simpleView filter
  */
 
+/**
+ * SimpleView Filter class
+ *
+ * @category SimpleViewFilter
+ * @package  SimpleViewFilter
+ * @author   Darren Odden <darren@odden.io>
+ * @license  MIT ./LICENSE
+ * @link     https://www.odden.io
+ */
 class SimpleViewFilter
 {
-
     public $fieldName;
     public $fieldCategory;
     public $filterValue;
@@ -29,7 +39,7 @@ class SimpleViewFilter
      * @param [type] $filterType    type
      * @param [type] $filterValue   value
      */
-    function __construct($fieldCategory, $fieldName, $filterType, $filterValue)
+    public function __construct($fieldCategory, $fieldName, $filterType, $filterValue)
     {
         $this->fieldCategory = $fieldCategory;
         $this->fieldName     = $fieldName;
@@ -52,18 +62,16 @@ class SimpleViewFilter
      * Generate filters
      *
      * @param [type] $filterObject create filter object
-     * 
+     *
      * @return void
      */
     public static function generatefilter($filterObject)
     {
         assert(is_a($filterObject, 'SimpleViewFilter'));
         
-        $filter = array 
-        (
+        $filter = array(
             'ANDOR' => 'OR',
-            'FILTERS' => array
-            (
+            'FILTERS' => array(
                 $filterObject->toArray()
             )
         );
@@ -75,7 +83,7 @@ class SimpleViewFilter
      * Filter collection to array
      *
      * @param [type] $filters filters
-     * 
+     *
      * @return void
      */
     public static function filterCollectiontoArray($filters)
@@ -90,5 +98,4 @@ class SimpleViewFilter
 
         return $processedArray;
     }
-
 }
