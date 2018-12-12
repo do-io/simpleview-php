@@ -2,22 +2,20 @@
 /**
  * SimpleView Service API
  * 
- * PHP Version 7.1
- * 
- * @category SimpleView
- * @package  SimpleView
- * @author   Darren Odden <darren@odden.io>
- * @license  MIT ./LICENSE
- * @link     www.odden.io
+ * @category   SimpleView
+ * @package    SimpleView
+ * @author     Darren Odden <darren@odden.io>
+ * @license    MIT ./LICENSE
+ * @link       www.odden.io
  */
 
 require_once 'SimpleViewFilter';
 
 class SimpleView
 {
-    private $userName = '';
-    private $password = '';
-    private $soapClient;
+    private $_userName = '';
+    private $_password = '';
+    private $_soapClient;
 
     /**
      * __construct
@@ -26,9 +24,9 @@ class SimpleView
      */
     function __construct($config)
     {
-        $this->userName   = $config->username;
-        $this->password   = $config->password;
-        $this->soapClient = new SoapClient($config->soapurl);
+        $this->_userName   = $config->username;
+        $this->_password   = $config->password;
+        $this->_soapClient = new SoapClient($config->soapurl);
     }
 
     // API Wrappers
