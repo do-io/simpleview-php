@@ -24,27 +24,27 @@
  * @license  MIT ./LICENSE
  * @link     https://www.odden.io
  */
-class SimpleViewFilter
+class SimpleViewFilter extends SimpleView
 {
-    public $fieldName;
+    public $filterType;
     public $fieldCategory;
     public $filterValue;
-    public $filterType;
+    public $fieldName;
 
     /**
      * Setup filter
      *
-     * @param [type] $fieldCategory category
-     * @param [type] $fieldName     name
      * @param [type] $filterType    type
+     * @param [type] $fieldCategory category
      * @param [type] $filterValue   value
+     * @param [type] $fieldName     name
      */
-    public function __construct($fieldCategory, $fieldName, $filterType, $filterValue)
+    public function __construct($filterType, $fieldCategory, $filterValue, $fieldName)
     {
-        $this->fieldCategory = $fieldCategory;
-        $this->fieldName     = $fieldName;
         $this->filterType    = $filterType;
+        $this->fieldCategory = $fieldCategory;
         $this->filterValue   = $filterValue;
+        $this->fieldName     = $fieldName;
     }
 
     /**
