@@ -39,7 +39,7 @@ class SimpleView
     }
 
     /**
-     * Undocumented function
+     * Get the business listings
      *
      * @param integer $pageSize         the number of items per page
      * @param integer $pageNum          the page requested
