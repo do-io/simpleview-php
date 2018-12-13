@@ -279,15 +279,19 @@ class SimpleViewLibrary implements SimpleViewInterface
     /**
      * Coupons by category id
      *
-     * @param [type] $couponCatId category id
-     * @param [type] $pageNum     page number
-     * @param [type] $pageSize    number of results per page
-     * @param [type] $filters     filter
+     * @param integer $couponCatId category id
+     * @param integer $pageNum     page number
+     * @param integer $pageSize    number of results per page
+     * @param object  $filters     filter
      *
      * @return void
      */
-    public function getCouponsByCategories($couponCatId, $pageNum, $pageSize, $filters)
-    {
+    public function getCouponsByCategories(
+        $couponCatId,
+        $pageNum,
+        $pageSize,
+        $filters
+    ) {
         $results;
         
         try {
@@ -318,8 +322,14 @@ class SimpleViewLibrary implements SimpleViewInterface
      *
      * @return void
      */
-    public function getCouponsByListingId($listingId, $pageNum, $pageSize, $redeemStart, $redeemEnd, $keywords)
-    {
+    public function getCouponsByListingId(
+        $listingId,
+        $pageNum,
+        $pageSize,
+        $redeemStart,
+        $redeemEnd,
+        $keywords
+    ) {
         $results;
         
         try {
