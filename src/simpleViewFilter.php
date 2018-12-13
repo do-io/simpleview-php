@@ -44,8 +44,12 @@ class SimpleViewFilter
      * @param integer $filterValue   value
      * @param string  $fieldName     name
      */
-    public function __construct($filterType, $fieldCategory, $filterValue, $fieldName)
-    {
+    public function __construct(
+        $filterType,
+        $fieldCategory,
+        $filterValue,
+        $fieldName
+    ) {
         $this->filterType    = $filterType;
         $this->fieldCategory = $fieldCategory;
         $this->filterValue   = $filterValue;
@@ -59,7 +63,12 @@ class SimpleViewFilter
      */
     public static function filterAllListings()
     {
-        $filter = new SimpleViewFilter('Listing', 'Listingid', FilterType::GREATER_THAN, 0);
+        $filter = new SimpleViewFilter(
+            'Listing',
+            'Listingid',
+            FilterType::GREATER_THAN,
+            0
+        );
         return self::generateFilter($filter);
     }
     
