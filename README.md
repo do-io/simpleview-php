@@ -4,4 +4,6 @@
 <!-- [![License](https://poser.pugx.org/spryker/code-sniffer/license.svg)](https://packagist.org/packages/spryker/code-sniffer) -->
 <!-- [![Total Downloads](https://poser.pugx.org/spryker/code-sniffer/d/total.svg)](https://packagist.org/packages/spryker/code-sniffer) -->
 
-SimpleView api library functionality
+SimpleView API library functionality
+
+Library built for testing using composer
