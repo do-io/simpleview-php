@@ -1,4 +1,5 @@
 *.lock
 
+simpleview.json
 vendor
 documents
