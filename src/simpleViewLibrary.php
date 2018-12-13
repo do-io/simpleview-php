@@ -13,9 +13,8 @@
 
 namespace SimpleView;
 
-// require_once __DIR__ . '/simpleViewInterface.php';
-
 use \Exception;
+use SimpleView\SimpleViewInterface;
 
 /**
  * SimpleView PHP Library Class

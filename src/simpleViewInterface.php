@@ -41,7 +41,7 @@ interface SimpleViewInterface
      *
      * @return void
      */
-    public function setListType($type);
+    public function setListingType($type);
 
     /**
      * Set the filter
