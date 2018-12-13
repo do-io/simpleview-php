@@ -1,7 +1,7 @@
 {
-    "username": "s4nt4c8z",
-    "password": "scbr1dg3",
-    "soapurl": "http://santacruzca.simpleviewcrm.com/webapi/listings/soap/listings.cfc?wsdl",
+    "username": "xxxxxxxx",
+    "password": "xxxxxxxx",
+    "soapurl": "http://xxxxxxxx.simpleviewcrm.com/webapi/listings/soap/listings.cfc?wsdl",
     "listings": {
         "pageSize": 100,
         "showAmenities": false
