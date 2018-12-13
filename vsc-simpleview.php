@@ -30,7 +30,8 @@ if (function_exists('vscSimpleviewCreate') === false) {
         
         $vscConnect = new SimpleView($config);
         // echo(var_dump($vscConnect));
-        $allListings = SimpleViewFilter::filterAllListings();
+        $simpleViewFilter = new SimpleViewFilter();
+        $allListings = $simpleViewFilter->filterAllListings();
         
         $initial = $vscConnect->getListings(
             1,
