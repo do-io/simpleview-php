@@ -53,7 +53,12 @@ interface SimpleViewInterface
     /**
      * Get the Listings
      *
+     * @param integer $pageSize         Number of results
+     * @param integer $pageNum          Page of results
+     * @param object  $filter           Filter Object
+     * @param integer $displayAmenities 1 or 0 [yes or no]
+     *
      * @return void
      */
-    public function getListings();
+    public function getListings($pageSize, $pageNum, $filter, $displayAmenities);
 }
