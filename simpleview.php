@@ -195,6 +195,6 @@ $filter = filterAll();
 // $listingIds = getListingIds($connect, $filter, 100);
 // print var_dump($listingIds);
 
-$listing = getListing($connect, 428, 0);
+$listing = getListing($connect, 538, 0);
 print_r($listing["DATA"]);
 print "\n";
