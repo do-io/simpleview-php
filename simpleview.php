@@ -16,7 +16,7 @@
  */
 
 use SimpleView\SimpleViewLibrary;
-use PHPUnit\Runner\Exception;
+use PHPUnit\Exception;
 
 require_once __DIR__ . '/src/simpleViewLibrary.php';
 require_once __DIR__ . '/src/simpleViewFilter.php';
