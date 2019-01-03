@@ -89,24 +89,41 @@ if (function_exists('simpleviewGetResultsNumber')) {
     /**
      * Undocumented function
      *
-     * @param object $connect           SOAP connection
-     * @param array  $filterAllListings Array of filterAllListings
-     * @param bool   $showAmenities     True or False
+     * @param object $connect       SOAP connection
+     * @param array  $filter        Array of filterAllListings
+     * @param bool   $showAmenities True or False
      *
      * @return integer number of results
      */
     function simpleviewGetResultsNumber(
         $connect,
-        $filterAllListings,
+        $filter,
         $showAmenities
     ) {
         $initial = $connect->getListings(
             1,
             1,
-            $filterAllListings,
+            $filter,
             $showAmenities
         );
 
         return $initial['STATUS']['RESULTS'];
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @param object  $connect    SimpleView SOAP connection
+     * @param integer $listId     Listing ID
+     * @param integer $updateHits 0
+     *
+     * @return void
+     */
+    function simpleviewGetListing(
+        $connect,
+        $listId,
+        $updateHits
+    ) {
+        return $connect->getListing($listId, $updateHits);
     }
 }
