@@ -7,7 +7,7 @@
  * @category    SimpleView_Soap
  * @package     SimpleView
  * @author      Darren Odden <darren@odden.io>
- * @file        vsc-simpleView.php
+ * @file        simpleview.php
  * @copyright   2018 Darren Odden
  * @license     MIT /LICENSE
  * @version     GIT: @git_id@
@@ -152,7 +152,7 @@ function getListingIds($connection, $filter, $pageSize)
  */
 function getConfig()
 {
-    $jsonStr = file_get_contents(__DIR__ . "/simpleview.json");
+    $jsonStr = file_get_contents(__DIR__ . "/config.json");
     return json_decode($jsonStr);
 }
 
