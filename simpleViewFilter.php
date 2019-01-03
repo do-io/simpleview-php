@@ -98,7 +98,7 @@ class SimpleViewFilter
      */
     public static function filterCollectiontoArray($filters)
     {
-        assert(self::isArrayOfFilters($filters));
+        assert(self::_isArrayOfFilters($filters));
 
         $processedArray = array();
 
@@ -122,5 +122,17 @@ class SimpleViewFilter
             'FILTERTYPE'    => $this->filterType,
             'FILTERVALUE'   => $this->filterValue
         );
+    }
+
+    /**
+     * Check if is array of Filters
+     *
+     * @param array $filters array of Filters
+     *
+     * @return boolean
+     */
+    private static function _isArrayOfFilters($filters)
+    {
+        return (is_array($filters) && (is_a($filters[0], 'SimpleViewFilter'))) ? true : false;
     }
 }
