@@ -179,6 +179,14 @@ function processListings()
     }
 }
 
+function amenities($amenities)
+{
+    foreach ($amenities as $amenity) {
+        if (strlen($amenity["VALUE"]) > 0) {
+            print $amenity["NAME"] . "---" . $amenity["VALUE"] . "\n";
+        }
+    }
+}
 
 /////////////////////////////////
 $config = getConfig();
@@ -195,6 +203,7 @@ $filter = filterAll();
 // $listingIds = getListingIds($connect, $filter, 100);
 // print var_dump($listingIds);
 
-$listing = getListing($connect, 538, 0);
-print_r($listing["DATA"]);
+$listing = getListing($connect, 428, 0);
+// print_r($listing["DATA"]);
+amenities($listing["DATA"]["AMENITIES"]);
 print "\n";
