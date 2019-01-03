@@ -13,7 +13,7 @@
 
 namespace SimpleView;
 
-use \Exception;
+use PHPUnit\Exception;
 
 /**
  * SimpleView PHP Library Class
