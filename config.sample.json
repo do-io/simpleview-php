@@ -5,5 +5,11 @@
     "listings": {
         "pageSize": 100,
         "showAmenities": false
+    },
+    "filter": {
+        "filterType": "GREATER THAN",
+        "fieldCategory": "Listing",
+        "filterValue": 0,
+        "fieldName": "Listingid"
     }
 }

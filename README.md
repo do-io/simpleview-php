@@ -7,3 +7,16 @@
 SimpleView API library functionality
 
 Library built for testing using composer
+
+This is a PHP helper library for SimpleView CRM for SOAP calls.
+
+## You will have to provide
+
+The config.sample.json has the basic bones for the information required to connect. 
+
+You need to provide the following information:
+```json
+    "clientUserName": "xxxxxxxx",
+    "clientPassword": "xxxxxxxx",
+    "serviceUrl": "http://xxxxxxxx.simpleviewcrm.com/webapi/listings/soap/listings.cfc?wsdl",
+```
