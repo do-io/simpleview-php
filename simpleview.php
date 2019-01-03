@@ -173,6 +173,9 @@ function processListings()
 
     foreach ($listingIds as $listingId) {
         $listing = getListing($connection, $listingId, 0);
+        //TODO publish $listing
+        if (is_array($listing)) {
+        }
     }
 }
 
