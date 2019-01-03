@@ -5,7 +5,7 @@
  * PHP Version 7.1
  *
  * @category    SimpleView_Filter
- * @package     SimpleView
+ * @package     SimpleViewFilter
  * @author      Darren Odden <darren@odden.io>
  * @file        SimpleViewFilter.php
  * @copyright   2018 Darren Odden
@@ -15,10 +15,6 @@
  * @description main simpleView filter
  */
 
-namespace SimpleView;
-
-use Exception;
-use SimpleView\SimpleViewLibrary;
 
 /**
  * SimpleView Filter class
@@ -31,29 +27,29 @@ use SimpleView\SimpleViewLibrary;
  */
 class SimpleViewFilter
 {
-    public $filterType;
+    public $fieldName;
     public $fieldCategory;
     public $filterValue;
-    public $fieldName;
+    public $filterType;
 
     /**
      * Setup filter
      *
-     * @param integer $filterType    type
      * @param integer $fieldCategory category
-     * @param integer $filterValue   value
      * @param string  $fieldName     name
+     * @param integer $filterType    type
+     * @param integer $filterValue   value
      */
     public function __construct(
-        $filterType,
         $fieldCategory,
-        $filterValue,
-        $fieldName
+        $fieldName,
+        $filterType,
+        $filterValue
     ) {
-        $this->filterType    = $filterType;
         $this->fieldCategory = $fieldCategory;
-        $this->filterValue   = $filterValue;
         $this->fieldName     = $fieldName;
+        $this->filterType    = $filterType;
+        $this->filterValue   = $filterValue;
     }
 
     /**
@@ -66,7 +62,7 @@ class SimpleViewFilter
         $filter = new SimpleViewFilter(
             'Listing',
             'Listingid',
-            FilterType::GREATER_THAN,
+            'GREATER THAN',
             0
         );
         return self::generateFilter($filter);
@@ -111,5 +107,20 @@ class SimpleViewFilter
         }
 
         return $processedArray;
+    }
+
+    /**
+     * Convert object to an array
+     *
+     * @return array
+     */
+    public function toArray()
+    {
+        return array(
+            'FIELDCATEGORY' => $this->fieldCategory,
+            'FIELDNAME'     => $this->fieldName,
+            'FILTERTYPE'    => $this->filterType,
+            'FILTERVALUE'   => $this->filterValue
+        );
     }
 }
