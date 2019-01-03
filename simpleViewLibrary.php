@@ -110,7 +110,7 @@ class SimpleViewLibrary
      * @param integer $listingId  the id number of the listing
      * @param integer $updateHits text
      *
-     * @return results
+     * @return object
      */
     public function getListing($listingId, $updateHits)
     {
