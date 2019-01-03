@@ -130,9 +130,11 @@ class SimpleViewFilter
      * @param array $filters array of Filters
      *
      * @return boolean
+     *
+     * @SuppressWarnings(PHPMD.CamelCaseMethodName)
      */
     private static function _isArrayOfFilters($filters)
     {
-        return (is_array($filters) && (is_a($filters[0], 'SimpleViewFilter'))) ? true : false;
+        return (is_array($filters) && (is_a($filters[0], 'SimpleViewFilter'))) ? true : false; // @codingStandardsIgnoreLine
     }
 }
