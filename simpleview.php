@@ -25,7 +25,7 @@ if (function_exists('vscSimpleviewCreate') === false) {
      * Create the soap connection
      * vscSimpleviewCreate
      *
-     * @return void
+     * @return object SimpleView SOAP connection
      */
     function vscSimpleviewCreate()
     {
@@ -40,7 +40,7 @@ if (function_exists('simpleviewFilterAll') === false) {
     /**
      * Undocumented function
      *
-     * @return void
+     * @return object all listings filter
      */
     function simpleviewFilterAll()
     {
@@ -61,13 +61,13 @@ if (function_exists('simpleviewGetListings')) {
     /**
      * Undocumented function
      *
-     * @param [type] $connect           SOAP Connection
-     * @param [type] $filterAllListings filter array for all listings
-     * @param [type] $pageSize          page size, maximum 100
-     * @param [type] $pageNumber        current page
-     * @param [type] $showAmenities     show ammenities; true or false
+     * @param object  $connect           SOAP Connection
+     * @param array   $filterAllListings filter array for all listings
+     * @param integer $pageSize          page size, maximum 100
+     * @param integer $pageNumber        current page
+     * @param bool    $showAmenities     show ammenities; true or false
      *
-     * @return void
+     * @return object Listings
      */
     function simpleviewGetListings(
         $connect,
@@ -76,7 +76,7 @@ if (function_exists('simpleviewGetListings')) {
         $pageNumber,
         $showAmenities
     ) {
-        $connect->getPageListings(
+        return $connect->getPageListings(
             $pageSize,
             $pageNumber,
             $filterAllListings,
@@ -93,7 +93,7 @@ if (function_exists('simpleviewGetResultsNumber')) {
      * @param array  $filterAllListings Array of filterAllListings
      * @param bool   $showAmenities     True or False
      *
-     * @return void
+     * @return integer number of results
      */
     function simpleviewGetResultsNumber(
         $connect,
