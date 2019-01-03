@@ -4,17 +4,16 @@
  *
  * PHP Version 7.1
  *
- * @category    SimpleView_Filter
- * @package     SimpleViewFilter
- * @author      Darren Odden <darren@odden.io>
- * @file        SimpleViewFilter.php
- * @copyright   2018 Darren Odden
- * @license     MIT /LICENSE
- * @version     GIT: <git_id>
- * @link        http://www.odden.io
- * @description main simpleView filter
+ * @category Filter
+ * @package  SimpleViewFilter
+ * @author   Darren Odden <darren@odden.io>
+ * @license  MIT ../LICENSE
+ * @link     http://www.odden.io
  */
 
+namespace SimpleView;
+
+use PHPUnit\Exception;
 
 /**
  * SimpleView Filter class
@@ -77,8 +76,6 @@ class SimpleViewFilter
      */
     public static function generateFilter($filterObject)
     {
-        assert(is_a($filterObject, 'SimpleViewFilter'));
-        
         $filter = array(
             'ANDOR' => 'OR',
             'FILTERS' => array(

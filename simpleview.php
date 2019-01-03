@@ -16,10 +16,11 @@
  */
 
 use SimpleView\SimpleViewLibrary;
+use SimpleView\SimpleViewFilter;
 use PHPUnit\Exception;
 
-require_once __DIR__ . '/src/simpleViewLibrary.php';
-require_once __DIR__ . '/src/simpleViewFilter.php';
+require_once __DIR__ . '/src/SimpleViewLibrary.php';
+require_once __DIR__ . '/src/SimpleViewFilter.php';
 
 /**
  * Create the soap connection
@@ -179,6 +180,13 @@ function processListings()
     }
 }
 
+/**
+ * Undocumented function
+ *
+ * @param array $amenities array of amenities
+ *
+ * @return void
+ */
 function amenities($amenities)
 {
     foreach ($amenities as $amenity) {
@@ -203,7 +211,7 @@ $filter = filterAll();
 // $listingIds = getListingIds($connect, $filter, 100);
 // print var_dump($listingIds);
 
-$listing = getListing($connect, 428, 0);
+$listing = getListing($connect, 538, 0);
 // print_r($listing["DATA"]);
 amenities($listing["DATA"]["AMENITIES"]);
 print "\n";

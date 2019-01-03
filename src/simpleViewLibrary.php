@@ -7,7 +7,7 @@
  * @category Library
  * @package  SimpleView
  * @author   Darren Odden <darren@odden.io>
- * @license  MIT ./LICENSE
+ * @license  MIT ../LICENSE
  * @link     https://www.odden.io
  */
 
