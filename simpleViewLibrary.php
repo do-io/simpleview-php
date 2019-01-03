@@ -14,7 +14,6 @@
 namespace SimpleView;
 
 use \Exception;
-use SimpleView\SimpleViewInterface;
 
 /**
  * SimpleView PHP Library Class
@@ -27,7 +26,7 @@ use SimpleView\SimpleViewInterface;
  *
  * @SuppressWarnings(PHPMD.CamelCasePropertyName)
  */
-class SimpleViewLibrary implements SimpleViewInterface
+class SimpleViewLibrary
 {
     private $_clientUserName = '';
     private $_clientPassword = '';
@@ -44,7 +43,7 @@ class SimpleViewLibrary implements SimpleViewInterface
         $this->_clientUserName = $config->clientUserName;
         $this->_clientPassword = $config->clientPassword;
         $this->_serviceUrl     = $config->serviceUrl;
-        $this->_soapClient     = new \SoapClient($this->serviceUrl);
+        $this->_soapClient     = new \SoapClient($this->_serviceUrl);
     }
     
     /**
@@ -60,8 +59,8 @@ class SimpleViewLibrary implements SimpleViewInterface
 
         try {
             $results = $this->_soapClient->getListingTypes(
-                $this->_userName,
-                $this->_password,
+                $this->_clientUserName,
+                $this->_clientPassword,
                 $showWeb
             );
         } catch (Exception $e) {
@@ -83,16 +82,16 @@ class SimpleViewLibrary implements SimpleViewInterface
      */
     public function getListings($pageSize, $pageNum, $filter, $displayAmenities)
     {
-        $results;
+        $results = null;
 
         if ($displayAmenities === null) {
             $displayAmenities = false;
         }
 
         try {
-            $results = $this->soapClient->getListings(
-                $this->userName,
-                $this->password,
+            $results = $this->_soapClient->getListings(
+                $this->_clientUserName,
+                $this->_clientPassword,
                 $pageNum,
                 $pageSize,
                 $filter,
@@ -119,8 +118,8 @@ class SimpleViewLibrary implements SimpleViewInterface
 
         try {
             $results = $this->_soapClient->getListing(
-                $this->_userName,
-                $this->_password,
+                $this->_clientUserName,
+                $this->_clientPassword,
                 $listingId,
                 $updateHits
             );
@@ -143,9 +142,9 @@ class SimpleViewLibrary implements SimpleViewInterface
         $results;
 
         try {
-            $results = $this->soapClient->getListingCats(
-                $this->clientUserName,
-                $this->clientPassword,
+            $results = $this->_soapClient->getListingCats(
+                $this->_clientUserName,
+                $this->_clientPassword,
                 $listingTypeId
             );
         } catch (Exception $e) {
@@ -168,9 +167,9 @@ class SimpleViewLibrary implements SimpleViewInterface
         $results;
     
         try {
-            $results = $this->soapClient->getListingSubCats(
-                $this->clientUserName,
-                $this->clientPassword,
+            $results = $this->_soapClient->getListingSubCats(
+                $this->_clientUserName,
+                $this->_clientPassword,
                 $listingCategoryId,
                 $listingTypeId
             );
@@ -193,9 +192,9 @@ class SimpleViewLibrary implements SimpleViewInterface
         $results;
         
         try {
-            $results = $this->soapClient->getListingRegions(
-                $this->clientUserName,
-                $this->clientPassword,
+            $results = $this->_soapClient->getListingRegions(
+                $this->_clientUserName,
+                $this->_clientPassword,
                 $catId
             );
         } catch (Exception $e) {
@@ -215,9 +214,9 @@ class SimpleViewLibrary implements SimpleViewInterface
         $results;
         
         try {
-            $results = $this->soapClient->getListingAmenities(
-                $this->clientUserName,
-                $this->clientPassword
+            $results = $this->_soapClient->getListingAmenities(
+                $this->_clientUserName,
+                $this->_clientPassword
             );
         } catch (Exception $e) {
             $results = false;
@@ -236,9 +235,9 @@ class SimpleViewLibrary implements SimpleViewInterface
         $results;
         
         try {
-            $results = $this->soapClient->getCouponCats(
-                $this->clientUserName,
-                $this->clientPassword
+            $results = $this->_soapClient->getCouponCats(
+                $this->_clientUserName,
+                $this->_clientPassword
             );
         } catch (Exception $e) {
             $results = false;
@@ -261,9 +260,9 @@ class SimpleViewLibrary implements SimpleViewInterface
         $results;
         
         try {
-            $results = $this->soapClient->getCoupons(
-                $this->clientUserName,
-                $this->clientPassword,
+            $results = $this->_soapClient->getCoupons(
+                $this->_clientUserName,
+                $this->_clientPassword,
                 $pageNum,
                 $pageSize,
                 $filter
@@ -294,9 +293,9 @@ class SimpleViewLibrary implements SimpleViewInterface
         $results;
         
         try {
-            $results = $this->soapClient->getCouponsByCats(
-                $this->clientUserName,
-                $this->clientPassword,
+            $results = $this->_soapClient->getCouponsByCats(
+                $this->_clientUserName,
+                $this->_clientPassword,
                 $couponCatId,
                 $pageNum,
                 $pageSize,
@@ -332,9 +331,9 @@ class SimpleViewLibrary implements SimpleViewInterface
         $results;
         
         try {
-            $results = $this->soapClient->getCouponsByListingId(
-                $this->clientUserName,
-                $this->clientPassword,
+            $results = $this->_soapClient->getCouponsByListingId(
+                $this->_clientUserName,
+                $this->_clientPassword,
                 $listingId,
                 $pageNum,
                 $pageSize,
@@ -362,9 +361,9 @@ class SimpleViewLibrary implements SimpleViewInterface
         $results;
         
         try {
-            $results = $this->soapClient->getCoupon(
-                $this->clientUserName,
-                $this->clientPassword,
+            $results = $this->_soapClient->getCoupon(
+                $this->_clientUserName,
+                $this->_clientPassword,
                 $couponId,
                 $updateHits
             );
@@ -389,9 +388,9 @@ class SimpleViewLibrary implements SimpleViewInterface
         $results;
         
         try {
-            $results = $this->soapClient->updateHits(
-                $this->clientUserName,
-                $this->clientPassword,
+            $results = $this->_soapClient->updateHits(
+                $this->_clientUserName,
+                $this->_clientPassword,
                 $hitTypeID,
                 $recId,
                 $hitDate
