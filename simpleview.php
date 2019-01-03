@@ -181,14 +181,17 @@ function processListings()
 $config = getConfig();
 
 $connect = create();
-print var_dump($connect);
+// print var_dump($connect);
 
 $filter = filterAll();
-print var_dump($filter);
+// print var_dump($filter);
 
 // $listings = $connect->getListings(1, 1, $filter, false);
 // print var_dump($listings);
 
-$listingIds = getListingIds($connect, $filter, 100);
-print var_dump($listingIds);
+// $listingIds = getListingIds($connect, $filter, 100);
+// print var_dump($listingIds);
+
+$listing = getListing($connect, 428, 0);
+print_r($listing["DATA"]);
 print "\n";
