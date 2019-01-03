@@ -16,33 +16,32 @@
  */
 
 use SimpleView\SimpleViewLibrary;
+use PHPUnit\Runner\Exception;
 
 require_once __DIR__ . '/simpleViewLibrary.php';
 require_once __DIR__ . '/simpleViewFilter.php';
 
-if (function_exists('vscSimpleviewCreate') === false) {
+if (function_exists('create') === false) {
     /**
      * Create the soap connection
-     * vscSimpleviewCreate
      *
      * @return object SimpleView SOAP connection
      */
-    function vscSimpleviewCreate()
+    function create()
     {
-        $jsonStr = file_get_contents(__DIR__ . "/simpleview.json");
-        $config = json_decode($jsonStr);
+        $config = getConfig();
         
         return new SimpleViewLibrary($config);
     }
 }
 
-if (function_exists('simpleviewFilterAll') === false) {
+if (function_exists('filterAll') === false) {
     /**
      * Undocumented function
      *
      * @return object all listings filter
      */
-    function simpleviewFilterAll()
+    function filterAll()
     {
         $simpleViewFilter = new SimpleViewFilter(
             $config->filter->fieldCategory,
@@ -57,7 +56,7 @@ if (function_exists('simpleviewFilterAll') === false) {
     }
 }
 
-if (function_exists('simpleviewGetListings')) {
+if (function_exists('svGetListings')) {
     /**
      * Undocumented function
      *
@@ -69,14 +68,14 @@ if (function_exists('simpleviewGetListings')) {
      *
      * @return object Listings
      */
-    function simpleviewGetListings(
+    function svGetListings(
         $connect,
         $filterAllListings,
         $pageSize,
         $pageNumber,
         $showAmenities
     ) {
-        return $connect->getPageListings(
+        return $connect->getListings(
             $pageSize,
             $pageNumber,
             $filterAllListings,
@@ -85,9 +84,9 @@ if (function_exists('simpleviewGetListings')) {
     }
 }
 
-if (function_exists('simpleviewGetResultsNumber')) {
+if (function_exists('getResultsNumber')) {
     /**
-     * Undocumented function
+     * Get the number of results to process
      *
      * @param object $connect       SOAP connection
      * @param array  $filter        Array of filterAllListings
@@ -95,7 +94,7 @@ if (function_exists('simpleviewGetResultsNumber')) {
      *
      * @return integer number of results
      */
-    function simpleviewGetResultsNumber(
+    function getResultsNumber(
         $connect,
         $filter,
         $showAmenities
@@ -109,17 +108,19 @@ if (function_exists('simpleviewGetResultsNumber')) {
 
         return $initial['STATUS']['RESULTS'];
     }
+}
 
+if (function_exists('getListing') === false) {
     /**
-     * Undocumented function
+     * Get listing from SimpleView
      *
      * @param object  $connect    SimpleView SOAP connection
      * @param integer $listId     Listing ID
      * @param integer $updateHits 0
      *
-     * @return void
+     * @return object listing
      */
-    function simpleviewGetListing(
+    function getListing(
         $connect,
         $listId,
         $updateHits
@@ -127,3 +128,83 @@ if (function_exists('simpleviewGetResultsNumber')) {
         return $connect->getListing($listId, $updateHits);
     }
 }
+
+if (function_exists('getListingIds') === false) {
+    /**
+     * Undocumented function
+     *
+     * @param [type] $connect
+     * @param [type] $filter
+     * @param [type] $pageSize
+     *
+     * @return void
+     */
+    function getListingIds($connect, $filter, $pageSize)
+    {
+        $resultNumber = getResultsNumber($connect, $filter, 0);
+
+        $pages = $resultNumber % $pageSize;
+        $results = array();
+
+        for ($page = 1; $page<=$pages; $page) {
+            $listings = $connect->getListings($pageSize, $page, $filter, 0);
+        
+            foreach ($listings["DATA"] as $listing) {
+                array_push($results, $listing["LISTINGID"]);
+            }
+        }
+        return $results;
+    }
+}
+
+if (function_exists('getConfig') === false) {
+    /**
+     * Undocumented function
+     *
+     * @return object
+     */
+    function getConfig()
+    {
+        $jsonStr = file_get_contents(__DIR__ . "/simpleview.json");
+        return json_decode($jsonStr);
+    }
+}
+
+if (function_exists('processListings') === false) {
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
+    function processListings()
+    {
+        $connection = create();
+        $filter     = filterAll();
+
+        $config = getConfig();
+        $pageSize = $config->pageSize;
+
+        $listingIds = getListingIds($connection, $filter, $pageSize);
+
+        foreach ($listingIds as $listingId) {
+            $listing = getListing($connection, $listingId, 0);
+
+            echo(var_dump($listing));
+        }
+    }
+}
+
+$config = getConfig();
+
+$connect = create();
+print var_dump($connect);
+
+$filter = filterAll();
+print var_dump($filter);
+
+$listings = $connect->getListings(1, 1, $filter, false);
+print var_dump($listings);
+
+$listingIds = getListingIds($connect, $filter, 100);
+print var_dump($listingIds);
+print "\n";
