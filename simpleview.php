@@ -18,8 +18,8 @@
 use SimpleView\SimpleViewLibrary;
 use PHPUnit\Runner\Exception;
 
-require_once __DIR__ . '/simpleViewLibrary.php';
-require_once __DIR__ . '/simpleViewFilter.php';
+require_once __DIR__ . '/src/simpleViewLibrary.php';
+require_once __DIR__ . '/src/simpleViewFilter.php';
 
 /**
  * Create the soap connection
