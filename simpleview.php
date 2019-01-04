@@ -191,7 +191,7 @@ function amenities($amenities)
 {
     foreach ($amenities as $amenity) {
         if (strlen($amenity["VALUE"]) > 0) {
-            print $amenity["NAME"] . "---" . $amenity["VALUE"] . "\n";
+            print $amenity["NAME"] . "\n-----\n" . $amenity["VALUE"] . "\n\n";
         }
     }
 }
@@ -211,7 +211,7 @@ $filter = filterAll();
 // $listingIds = getListingIds($connect, $filter, 100);
 // print var_dump($listingIds);
 
-$listing = getListing($connect, 538, 0);
+$listing = getListing($connect, 401, 0);
 // print_r($listing["DATA"]);
 amenities($listing["DATA"]["AMENITIES"]);
 print "\n";
