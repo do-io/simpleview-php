@@ -43,7 +43,7 @@ class SimpleViewLibrary
         $this->_clientUserName = $config->clientUserName;
         $this->_clientPassword = $config->clientPassword;
         $this->_serviceUrl     = $config->serviceUrl;
-        $this->_soapClient     = new \SoapClient($this->_serviceUrl);
+        $this->_soapClient     = new \SoapClient($this->_serviceUrl, array('exceptions' => 0));
     }
     
     /**
