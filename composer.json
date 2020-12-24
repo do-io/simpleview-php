@@ -1,7 +1,11 @@
 {
-    "name": "SimpleView for PHP",
+    "name": "do-io/simpleview-php",
     "description": "SimpleView PHP API",
+    "minimum-stability": "dev",
     "require-dev": {
         "phpunit/phpunit": "^7"
+    },
+    "autoload": {
+        "psr-4": { "SimpleView\\": "src" }
     }
 }
